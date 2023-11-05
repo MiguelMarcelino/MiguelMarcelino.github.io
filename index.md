@@ -1,13 +1,10 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
-layout: home
+layout: page
 list_title: ' '
 title: Introduction
 ---
 
-# A bit about myself
+## A bit about myself
 
 Software development has always been more than just a profession for me. Fueled by my interest in experimenting with software and trying out new technologies, I am perpetually in search of the next source of inspiration for my upcoming projects. Whether it's something that motivates others to pursue their passions or a challenge so absorbing that I willingly isolate myself in a proverbial cave for two weeks, I wholeheartedly embrace the experience. 
 
@@ -19,7 +16,7 @@ Fortunately, I was able to carry this passion into my professional career, to so
 For science! No, really. I created this page with the intent of sharing knowledge. Whether this is a personal opinion or a topic I am currently studying, I will be writing it here. Feel free to comment any time if you disagree. After all, "courage is what it takes to stand up and speak [but it] is also what it takes to sit down and listen" (Winston Churchill).
 
 
-## Some of my projects:
+## Some of my projects
 
 ### Somnus
 The name Somnus in the roman mythology is the personification of <i>sleep</i>. This name was chosen as a tribute to all developers that give up their sleep to achieve a better quality product.
@@ -30,14 +27,3 @@ A transpiler that translates Python to Julia. It was built to speedup the develo
 
 ### Thoth
 A knowledge base for the Computer Science. Enjoy a summarized view of all the technical terms and fancy jargon used in computer science. Check out a brief explanation about each technological term and learn with explanatory examples that showcase everything in action!
-
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-      - <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_long_string }}</time>
-    </li>
-  {% endfor %}
-</ul>
