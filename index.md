@@ -27,3 +27,17 @@ Somnus was created with the goal of offering services to a small community of pr
 
 ### PyJL
 A transpiler that translates Python to Julia. It was built to speedup the development of Julia libraries and produce human-readable Julia source code. Despite it being at an early development stage, I managed to translate Python code into human-readable Julia source code that can achieve good performance.
+
+### Thoth
+A knowledge base for the Computer Science. Enjoy a summarized view of all the technical terms and fancy jargon used in computer science. Check out a brief explanation about each technological term and learn with explanatory examples that showcase everything in action!
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+      - <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_long_string }}</time>
+    </li>
+  {% endfor %}
+</ul>
