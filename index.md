@@ -3,10 +3,11 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
+list_title: ' '
 ---
 
 
-## Who am I?
+## A small introduction
 Software development has always been more than just a profession for me. Fueled by my interest in experimenting with software and trying out new technologies, I am perpetually in search of the next source of inspiration for my upcoming projects. Whether it's something that motivates others to pursue their passions or a challenge so absorbing that I willingly isolate myself in a proverbial cave for two weeks, I wholeheartedly embrace the experience. 
 
 Throughout my academic career, I enjoyed tinkering with distributed systems and exploring the realm of algorithms and data structures (a true world unto itself). During my masters I also developed an appreciation for computer architecture and began exploring the Microservice architecture.  However, my thesis work ultimately led me into the domain of transpilers, and I contributed to the development of the Py2many project. It was during my thesis that I developed an affection for static analysis.

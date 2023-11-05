@@ -1,0 +1,144 @@
+---
+layout: post
+title:  "Welcome to Jekyll!"
+date:   2022-11-05 14:00:00 +0000
+categories: opinion
+---
+
+# Java 17: Promising future, but is it to late?
+
+Java 17, scheduled to be released on September 19th, is introducing some very useful features to help improve the language semantics, readability as well as security of future Java releases. This new release is an LTS release, featuring a more extended period of public free updates than previous releases of Java (from 12 - 16). Although Oracle has stated that non-LTS releases are no less stable than LTS releases, LTS releases still have the benefit of extended support, which is especially important for businesse use cases.
+This new Java release consolidates some changes already introduced in Java 16 and previous versions and also introduces some new features, which are especially useful for programmers. I will briefly go over some of the newly introduced features in Java 17 and also give you my thoughts on this release at the end.
+
+## Pattern matching for Switch-case (JEP 406 - Preview)
+Java 17 is finally introducing pattern matching for the switch-case statement as a preview. This will help improve the readability of programs and expand the range of possible applications for the switch statement.
+This change made to the switch operator was motivated by JEP 394 introduced in Java 16, which allowed pattern matching to do the inference work when using the instanceof operator. 
+This newly introduced feature allows for code that needed to be written using an if...else statement to be written using a simple switch-case statement. I’ve taken this example from Oracle’s official site to demonstrate the improvement made to the switch-case statement.
+Here is an example of how the code would have looked before:
+
+```Java
+static String formatter(Object o) {
+    String formatted = "unknown";
+    if (o instanceof Integer i) {
+        formatted = String.format("int %d", i);
+    } else if (o instanceof Long l) {
+        formatted = String.format("long %d", l);
+    } else if (o instanceof Double d) {
+        formatted = String.format("double %f", d);
+    } else if (o instanceof String s) {
+        formatted = String.format("String %s", s);
+    }
+    return formatted;
+}
+```
+
+And here is the same code written in Java 17 using the newly introduced switch-case pattern matching feature:
+
+```Java
+static String formatterPatternSwitch(Object o) {
+    return switch (o) {
+        case Integer i -> String.format("int %d", i);
+        case Long l    -> String.format("long %d", l);
+        case Double d  -> String.format("double %f", d);
+        case String s  -> String.format("String %s", s);
+        default        -> o.toString();
+    };
+}
+```
+
+The code is more readable which makes it not only easier to understand but also easier to detect and correct any mistakes.
+
+The switch case statement also supports pattern matching with the null keyword. In previous Java releases, we needed to check if the value was null before using the switch statement like so:
+
+```Java
+static void testFooBar(String s) {
+    if (s == null) {
+        System.out.println("oops!");
+        return;
+    }
+    switch (s) {
+        case "Foo", "Bar" -> System.out.println("Great");
+        default           -> System.out.println("Ok");
+    }
+}
+```
+
+On this new version this is simplified, which again improves code readability:
+
+```Java
+static void testFooBar(String s) {
+    switch (s) {
+        case null         -> System.out.println("Oops");
+        case "Foo", "Bar" -> System.out.println("Great");
+        default           -> System.out.println("Ok");
+    }
+}
+```
+
+
+With this new Update, Oracle has improved code intelligibility, which is always a worthwhile update for a programmer.
+
+
+## Strongly Encapsulate JDK Internals (JEP 403)
+Following JEP 396, all internal elements of the JDK are going to become strongly encapsulated except for APIs like sun.misc.Unsafe. Users can no longer return to the relaxed encapsulation provided in JDK versions 9 to 16, which improves the security of the Java Platform overall.
+This decision was also influenced by Project Jigsaw, which intends to (among many other things) improve the security and maintainability of the Java SE Platform.
+Overall this should allow for a more controlled and safe environment and it would avoid possible maintenance burdens. As mentioned by Oracle: “Time and effort spent preserving these APIs, so as not to break existing code, could be better spent moving the platform forward”.
+Oracle also suggested earlier for users not to call sun packages directly, since they are not guaranteed to work on all Java supported platforms nor on future versions of Java on the same platform. Since one of the purposes of Java is to maintain interoperability, this Enhancement Proposal paves the way for future releases.
+
+## Sealed Classes (JEP 409)
+Previously added in Java SE 15 and Java SE 16 as a preview feature, sealed classes are now a finalized feature in Java SE 17. This feature allows you to specify which classes or interfaces can extend or implement a given superclass. You can do this by using the sealed modifier and by using permits to choose which classes are allowed to extend or implement the newly created superclass or interface. 
+The following is an official example from Oracle:
+
+```Java
+public abstract sealed class Shape
+    permits Circle, Rectangle, Square { ... }
+```
+
+
+In this example, only instances of Circle, Rectangle, or Square are allowed to extend the Shape class. It is worth mentioning that there is a restriction, where “the classes specified by permits must be located near the superclass: either in the same module (if the superclass is in a named module) or in the same package (if the superclass is in the unnamed module)”.
+The main objective of this feature is to cover cases where we might want to limit the types of objects belonging to a given hierarchy. Oracle exemplified this using the astronomical domain. Imagine you have the following class structure:
+
+```Java
+interface Celestial { ... }
+final class Planet implements Celestial { ... }
+final class Star   implements Celestial { ... }
+final class Comet  implements Celestial { ... }
+```
+
+All classes, namely Planet, Star, and Comet extend the interface Celestial, but if we wanted to restrict the kinds of objects that can be Celestial Objects, there would be no way of doing it. By using sealed classes, we can restrict the types of Celestial Objects to the three classes in the model, like so:
+
+```Java
+sealed interface Celestial 
+    permits Planet, Star, Comet{ ... }
+```
+
+Now, there are only three types of Celestial Objects.
+
+## Foreign Function & Memory API (JEP 412)
+Java is also improving its Foreign Function Interface with the latest Java release, which is always good to see. This API is the evolution of two previously introduced APIs: The Foreign Linker API and the Foreign-Memory Access API. Java is also improving its Foreign Function Interface with the latest Java release, which is always good to see. This API is the evolution of two previously introduced APIs: The Foreign Linker API and the Foreign-Memory Access API. The end goal is to replace JNI (Java Native Interface) and allow Java to extend its boundaries beyond the JVM even further.
+An example use case for this new API are libraries that need to access off-heap memory to avoid garbage collector unpredictabilities (as an example, check out Tensorflow). This should also allow for safer operations, with the intent of avoiding the use of the Unsafe API to allocate off-heap memory, which could lead to potential errors, crashing the JVM.
+
+## Conclusion
+Overall, I believe Java is tking steps in the right direction. The features are not groundbreaking, but they are a small step for a more robust and safe platform. Still, I can understand why some people are calling this release a “glass half full”. Many features from Java’s upcoming projects, such as Loom or Valhalla, have been teased many times, but have since only come out as beta features. Only time will tell if we will ever see these features come to light.
+
+
+## Sources
+- JDK 17: https://openjdk.java.net/projects/jdk/17/
+- Java JEP 406: https://openjdk.java.net/jeps/406
+- Java JEP 403: https://openjdk.java.net/jeps/403
+- Java JEP 409: https://openjdk.java.net/jeps/409
+- Relevance of LTS: https://mail.openjdk.java.net/pipermail/jdk-dev/2021-May/005543.html
+- Why developers should not write programs that call 'sun' packages: https://web.archive.org/web/19980215011039/http://java.sun.com/products/jdk/faq/faq-sun-packages.html
+- Is Java 17 a Glass Half Full?: https://infoq.com/news/2021/07/java-17-glass/
+
+Further recommended reading
+- JEP Index: https://openjdk.java.net/jeps/0
+- Java com.sun.Unsafe: https://www.baeldung.com/java-unsafe
+- Project Jigsaw: https://openjdk.java.net/projects/jigsaw/
+- Java Native Interface (JNI): https://docs.oracle.com/en/java/javase/16/docs/specs/jni/intro.html#java-native-interface-overview
+- Tensorflow: https://www.usenix.org/conference/osdi16/technical-sessions/presentation/abadi
+- Project Loom: https://openjdk.java.net/projects/loom/
+- Project valhalla: https://openjdk.java.net/projects/valhalla/
+- Project Amber: https://openjdk.java.net/projects/amber/
+- Project Panama: https://openjdk.java.net/projects/panama/
+
