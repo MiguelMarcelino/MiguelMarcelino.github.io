@@ -7,6 +7,6 @@ url: "https://somnyst.com"
 github_username:  MiguelMarcelino
 
 # Build settings
-theme: jekyll-theme-midnight
+theme: minima
 plugins:
   - jekyll-feed
