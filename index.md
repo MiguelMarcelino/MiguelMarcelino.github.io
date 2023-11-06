@@ -20,7 +20,7 @@ For science! No, really. I created this page with the intent of sharing knowledg
 
 ### Somnus
 The name Somnus in the roman mythology is the personification of <i>sleep</i>. This name was chosen as a tribute to all developers that give up their sleep to achieve a better quality product.
-Somnus was created with the goal of offering services to a small community of programmers and at the same time provide them with a platform where they can test new Software and publish their findings in the form of articles. As said by Oscar Wilde: “Experience is the name everyone gives to their mistakes”. Throughout the years, Somnus evolved into a blog where I publish articles and comment on several aspects of computer science. You can find the articles here.
+Somnus was created with the goal of offering services to a small community of programmers and at the same time provide them with a platform where they can test new Software and publish their findings in the form of articles. As said by Oscar Wilde: “Experience is the name everyone gives to their mistakes”. Throughout the years, Somnus evolved into a blog where I publish articles and comment on several aspects of computer science.
 
 ### PyJL
 A transpiler that translates Python to Julia. It was built to speedup the development of Julia libraries and produce human-readable Julia source code. Despite it being at an early development stage, I managed to translate Python code into human-readable Julia source code that can achieve good performance.
