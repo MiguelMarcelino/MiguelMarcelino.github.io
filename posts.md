@@ -6,8 +6,6 @@ permalink: /posts/
 
 {{include template_trimmer.js}}
 
-{% include parsers.html %}
-
 <ul>
   {% for post in site.posts %}
     <div>
@@ -19,12 +17,7 @@ permalink: /posts/
               {{ post.date | date_to_long_string }}
           </time>
       </p>
-      <p>
-        <script>getSubstring("{{ post.content }}", 0, 200);</script>
-      </p>
-      <p>
-        <script>getSubstring("asfassssssssssssssssssssssssssssssssssssssssss", 0, 200);</script>
-      </p>
     </div>
+    <hr>
   {% endfor %}
 </ul>
