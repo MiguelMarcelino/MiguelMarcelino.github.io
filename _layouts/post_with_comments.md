@@ -1,0 +1,7 @@
+---
+layout: post
+---
+
+{{ content }}
+
+{% include utterances.html %}
