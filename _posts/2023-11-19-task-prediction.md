@@ -216,7 +216,7 @@ Lastly, it would be beneficial if the model could also predict task story points
 
 We leave these thoughts as potential future improvements for the presented approach.
 
-## Final thoughts
+## Conclusion
 Overall, it might be possible to estimate task running time with a certain degree of confidence. However, given that such tools might still require input from the manager and the development team, their value for industrial applications is questionable. 
 Retrieving data from a third-party tool seems to be a feasible approach, but processing it on a large scale presents several concerns. 
 Furthermore, we are yet to discover if we could use the information from this model to start predicting tasks without requiring inputs from developers.
