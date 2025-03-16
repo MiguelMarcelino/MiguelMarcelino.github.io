@@ -13,8 +13,7 @@ Throughout my academic career, I enjoyed tinkering with distributed systems and 
 Fortunately, I was able to carry this passion into my professional career, to some extent, by assisting in the integration of various static analysis tools into CI pipelines. So far, the journey has been quite rewarding and it has given me the opportunity to apply the microservices knowledge I gained from my personal project. Now, it's a matter of riding this train and seeing where the journey takes me.
 
 ## Ok... but why am I here?
-For science! No, really. I created this page with the intent of sharing knowledge. Whether this is a personal opinion or a topic I am currently studying, I will be writing it here. Feel free to comment any time if you disagree. After all, "courage is what it takes to stand up and speak [but it] is also what it takes to sit down and listen" (Winston Churchill).
-
+I created this page to share knowledge. Whether it’s a personal insight, a deep dive into a topic I’m exploring, or just something I find interesting. If you agree, disagree, or have something to add, feel free to jump in. Great discussions lead to better ideas.
 
 ## Some of my projects
 
